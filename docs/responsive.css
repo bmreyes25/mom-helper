@@ -1,0 +1,9 @@
+@media (max-width: 1180px) and (min-width: 721px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 42px;
+    min-height: 0;
+  }
+  .hero-copy { max-width: 760px; }
+  .demo { max-width: 610px; transform: none; }
+}
