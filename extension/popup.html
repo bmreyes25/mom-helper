@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MOM Helper</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="mark" aria-hidden="true">∑</div>
+      <div class="status-wrap">
+        <div id="status" class="status">Looking for MyOpenMath…</div>
+        <div id="substatus" class="substatus"></div>
+      </div>
+      <button id="refresh" class="icon-btn" type="button" aria-label="Refresh">↻</button>
+    </header>
+
+    <section id="empty" class="empty hidden"></section>
+
+    <section id="content" class="content hidden">
+      <label id="questionPickerWrap" class="question-picker hidden">
+        Problem on this page
+        <select id="questionPicker"></select>
+      </label>
+      <div id="question" class="question"></div>
+      <div class="divider"></div>
+
+      <button id="solve" class="solve-btn" type="button">Solve</button>
+      <div id="busy" class="busy hidden">Calculating…</div>
+
+      <div id="stepsTitle" class="steps-title hidden">Solution steps</div>
+      <ol id="steps" class="steps hidden"></ol>
+      <div id="answer" class="answer hidden"></div>
+      <div id="engine" class="engine hidden"></div>
+      <div id="fillStatus" class="fill-status hidden"></div>
+
+      <details class="settings">
+        <summary>Fallback settings</summary>
+        <label class="check-row">
+          <input id="aiFallback" type="checkbox">
+          Use local AI only when the fast calculator cannot solve the problem
+        </label>
+        <div id="aiFields">
+          <label>
+            Local endpoint
+            <input id="endpoint" type="text" value="http://127.0.0.1:11434" spellcheck="false">
+          </label>
+          <label>
+            Model
+            <input id="model" type="text" value="qwen3.5:9b" spellcheck="false">
+          </label>
+          <div class="settings-actions">
+            <button id="saveSettings" type="button">Save</button>
+            <button id="testSolver" type="button">Test fallback</button>
+          </div>
+          <div id="solverStatus" class="solver-status"></div>
+        </div>
+      </details>
+
+      <details class="dataset" open>
+        <summary>Question dataset</summary>
+        <label class="check-row">
+          <input id="captureEnabled" type="checkbox">
+          Record each unique MyOpenMath question locally
+        </label>
+        <div class="dataset-meta"><span id="captureCount">0 questions saved</span></div>
+        <div class="settings-actions">
+          <button id="captureCurrent" type="button">Capture current</button>
+          <button id="captureAll" type="button">Capture all</button>
+          <button id="exportDataset" type="button">Export JSON</button>
+          <button id="clearDataset" type="button">Clear</button>
+        </div>
+        <div id="captureStatus" class="solver-status"></div>
+      </details>
+
+      <details class="diagnostics">
+        <summary>Diagnostics</summary>
+        <pre id="dev"></pre>
+      </details>
+    </section>
+  </main>
+  <script src="math-renderer.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
